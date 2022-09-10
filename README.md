@@ -3,10 +3,13 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
-      <a href="#What's-AWS">Introduction - AWS Certified Solutions Architect Associate</a>
+      <a href="#">Introduction - AWS Certified Solutions Architect Associate</a>
     </li>
      <li>
-      <a href="#IAM:-Users-&-Groups">IAM & AWS CLI</a>
+      <a href="#">IAM & AWS CLI</a>
+      <ul>
+      <li> <a href="#">IAM = Identity and Access Management, Global Service</a></li>
+      </ul>
     </li>
     <li>
       <a href="#">EC2 Fundamentals</a>
@@ -122,20 +125,69 @@
   </li>
 </ol>
 
-
 # IAM: Users & Groups
 
 ### IAM = Identity and Access Management, Global Service
 
 - Root account created by default, shouldn't be shared or used
 - **Users** are people within your organization, and can be grouped
--Groups dob't have to belong a grup, and user can belong to multiple groups
+  -user doesn't have to belong to a group, and user can belong to multiple groups
 
 ![Availability zones](./img/group.png)
 
-## IAM: Permissions
+### IAM: Permissions
+
 - **Users or Groups** can be assigned JSON documents called policies
 - These poloces define the permissiones of the users
 - In AWS you apply the least priviledge principle: don't give more permissions than a user needs
-![Availability zones](./img/poliy.png)
+  ![Availability zones](./img/poliy.png)
 
+### IAM Policies
+
+  ![Policies Inheritance](./img/policies-inheritance.png)
+
+  -Alice, Bob, Charles inherit a specific policy
+  - David, Edward inherit a specific policy
+  - Fred doesn't belong to any group -> own policy
+  - Charles & David: Share same audit policy and each person inherit each team's policy
+
+### IAM Policies Structure
+
+  ![Policies Inheritance](./img/iam-policy-structure.png)
+Consist of:
+<ul>
+<li>
+Version: policy language version, always include 2012-10-17
+</li>
+<li>
+Id: an identifier for the policy (optional)
+</li>
+<li>
+Statement: one ormore individual statements (required)
+<ul>
+Statements has:
+<li>
+Sid: an identifier for the statement (optional)
+</li>
+<li>
+Effect: whether statement allows or denies access (Allow, Deny)
+</li>
+<li>
+Principal: account/user/role to which policy applied to 
+</li>
+<li>
+Action: list of actions this policy allows or denies
+</li>
+<li>
+Resource: list of resources to which the actions applied to
+</li>
+<li>
+Condition: conditions for when this policy is in effect (optional)
+</li>
+</ul>
+</li>
+
+</ul>
+
+
+### IAM MFA Overview
